@@ -40,16 +40,16 @@ namespace UserRegistration.Controllers
         // POST: UserRegistrationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Post([FromBody] UserRegistrationModel user)
+        public ActionResult Create(UserRegistrationModel user)
         {
             try
             {
                 this._userRepository.InsertUser(user);
-                return new OkResult();
+                return RedirectToAction("Login");
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
 

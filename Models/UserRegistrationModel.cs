@@ -27,7 +27,6 @@ namespace UserRegistration.Models
         [MaxLength(20)]
         public string Location { get; set; }
 
-        [MaxLength(10)]
         public long MobileNo { get; set; }
 
         public DateTime DOB { get; set; }
