@@ -13,6 +13,6 @@ namespace UserRegistration.DBContext
 
         }
 
-        public DbSet<UserRegistration.Models.UserRegistration> UserRegistration { get; set; }
+        public DbSet<UserRegistration.Models.UserRegistrationModel> UserRegistration { get; set; }
     }
 }

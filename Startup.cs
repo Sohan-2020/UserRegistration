@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UserRegistration.Repository;
 
 namespace UserRegistration
 {
@@ -25,6 +26,7 @@ namespace UserRegistration
         {
             services.AddDbContext<DBContext.ApplicationDBContext>(o => o.UseSqlServer(Configuration.GetConnectionString("UserDB")));
             services.AddControllersWithViews();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,11 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UserRegistration.Models;
+using UserRegistration.Repository;
 
 namespace UserRegistration.Controllers
 {
     public class UserRegistrationController : Controller
     {
+
+        private readonly IUserRepository _userRepository;
+
+        public UserRegistrationController(IUserRepository userRepository)
+        {
+            this._userRepository = userRepository;
+        } 
+
         // GET: UserRegistrationController
         public ActionResult Index()
         {
@@ -26,20 +36,16 @@ namespace UserRegistration.Controllers
             return View();
         }
 
-        // GET: UserRegistrationController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+        
         // POST: UserRegistrationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Post([FromBody] UserRegistrationModel user)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                this._userRepository.InsertUser(user);
+                return new OkResult();
             }
             catch
             {

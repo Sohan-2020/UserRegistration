@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UserRegistration.Models
 {
-    public class UserRegistration
+    public class UserRegistrationModel
     {
         [Key]
         public int Id { get; set; }
