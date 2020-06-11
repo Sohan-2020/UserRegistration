@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using UserRegistration.Models;
 using UserRegistration.Repository;
 
@@ -16,12 +17,13 @@ namespace UserRegistration.Controllers
 
         public UserRegistrationController(IUserRepository userRepository)
         {
-            this._userRepository = userRepository;
+            this._userRepository = userRepository;          
         } 
 
         // GET: UserRegistrationController
         public ActionResult Index()
         {
+            LoadList();
             return View();
         }
 
@@ -40,7 +42,7 @@ namespace UserRegistration.Controllers
         // POST: UserRegistrationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserRegistrationModel user)
+        public ActionResult Post(UserRegistrationModel user)
         {
             try
             {
@@ -50,6 +52,24 @@ namespace UserRegistration.Controllers
             catch
             {
                 return View("Index");
+            }
+        }
+
+
+        // POST: Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Submit(UserLoginModel login)
+        {
+            try
+            {
+                UserRegistrationModel _user = this._userRepository.LoginVerification(login);
+                LoadList();
+                return View("Index",_user); 
+            }
+            catch
+            {
+                return View("Login");
             }
         }
 
@@ -93,6 +113,20 @@ namespace UserRegistration.Controllers
             {
                 return View();
             }
+        }
+
+        private void LoadList()
+        {
+            List<SelectListItem> _locationList = new List<SelectListItem>();
+            _locationList.Insert(0, new SelectListItem("Bangalore", "Ban"));
+            _locationList.Insert(1, new SelectListItem("Hyderabad", "Hyd"));
+            _locationList.Insert(2, new SelectListItem("Kochi", "Koc"));
+            ViewBag.ListOfLocation = _locationList;
+
+            List<SelectListItem> _genderList = new List<SelectListItem>();
+            _genderList.Insert(0, new SelectListItem("Male", "M"));
+            _genderList.Insert(1, new SelectListItem("Female", "F"));
+            ViewBag.ListOfGender = _genderList;
         }
     }
 }

@@ -15,5 +15,6 @@ namespace UserRegistration.Repository
         void UpdateUser(UserRegistrationModel user);
         void DeleteUser(int Id);
         void Save();
+        UserRegistrationModel LoginVerification(UserLoginModel userLogin);
     }
 }

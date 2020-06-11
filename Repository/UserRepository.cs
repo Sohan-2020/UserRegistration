@@ -46,5 +46,23 @@ namespace UserRegistration.Repository
         {
             throw new NotImplementedException();
         }
+
+        public UserRegistrationModel LoginVerification(UserLoginModel userLogin)
+        {
+            try
+            {
+                UserRegistrationModel _user = this._appDBContext.UserRegistration.FirstOrDefault(a => a.UserName == userLogin.UserName);
+                if (_user != null)
+                {
+                    if (_user.Password == userLogin.Password)
+                        return _user;
+                }                
+            }
+            catch(Exception ex)
+            {
+                
+            }
+            return null;
+        }
     }
 }
