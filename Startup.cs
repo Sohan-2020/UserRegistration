@@ -27,6 +27,7 @@ namespace UserRegistration
             services.AddControllersWithViews();
             services.AddDbContext<DBContext.ApplicationDBContext>(o => o.UseSqlServer(Configuration.GetConnectionString("UserDB")));            
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_INSTRUMENTATIONKEY"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

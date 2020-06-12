@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using UserRegistration.Models;
 using UserRegistration.Repository;
+using Microsoft.Extensions.Logging;
 
 namespace UserRegistration.Controllers
 {
@@ -14,7 +15,7 @@ namespace UserRegistration.Controllers
     {
 
         private readonly IUserRepository _userRepository;
-
+      
         public UserRegistrationController(IUserRepository userRepository)
         {
             this._userRepository = userRepository;          
