@@ -19,7 +19,7 @@ namespace UserRegistration.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("UserRegistration.Models.UserRegistration", b =>
+            modelBuilder.Entity("UserRegistration.Models.UserRegistrationModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -47,13 +47,16 @@ namespace UserRegistration.Controllers
         {
             try
             {
-                this._userRepository.InsertUser(user);
-                return RedirectToAction("Login");
+                if (ModelState.IsValid)
+                {
+                    this._userRepository.InsertUser(user);
+                    return RedirectToAction("Login");
+                }
             }
             catch
-            {
-                return View("Index");
+            {                
             }
+            return View("Index");
         }
 
 

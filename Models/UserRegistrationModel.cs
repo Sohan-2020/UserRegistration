@@ -12,26 +12,30 @@ namespace UserRegistration.Models
         [Key]
         public int Id { get; set; }
 
-        [Required,MaxLength(50)]
+        [RegularExpression(@".*[A-Za-z]")]
+        [Required, MaxLength(50)]
         public string FirstName { get; set; }
 
+        [RegularExpression(@".*[A-Za-z]")]
         [Required, MaxLength(50)]
         public string LastName { get; set; }
 
         [Required, MaxLength(25)]
         public string UserName { get; set; }
 
+        [RegularExpression(@"^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$")]
         [Required,MinLength(6),MaxLength(20)]
         public string Password { get; set; }
 
-        [MaxLength(20)]
+       
         public string Location { get; set; }
 
+        [Range(1000000000, 9999999999,ErrorMessage ="The mobile number should be of 10 digit.")]
         public long MobileNo { get; set; }
 
         public DateTime DOB { get; set; }
 
-        [MaxLength(10)]
+        
         public string Gender { get; set; }
 
     }

@@ -1,6 +1,6 @@
 ﻿@model UserRegistrationModel
 
-<br/>
+<br />
 <h2 class="text-info">User Registration Form</h2>
 <br />
 
@@ -81,14 +81,18 @@
         </div>
         @if (Model == null)
         {
-        <div class="form-group row">
-            <div class="offset-3 col-3">
-                <button type="submit" class="btn btn-primary form-control">Submit</button>
+            <div class="form-group row">
+                <div class="offset-3 col-3">
+                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                </div>
+                <div class="col-3">
+                    <button type="reset" class="btn btn-primary form-control">Reset</button>
+                </div>
             </div>
-            <div class="col-3">
-                <button type="reset" class="btn btn-primary form-control">Reset</button>
-            </div>
-        </div>
         }
     </form>
 </div>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
