@@ -23,7 +23,7 @@ namespace UserRegistration.Controllers
 
         // GET: UserRegistrationController
         public ActionResult Index()
-        {
+        {            
             LoadList();
             return View();
         }
@@ -56,7 +56,7 @@ namespace UserRegistration.Controllers
             catch
             {                
             }
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
 
